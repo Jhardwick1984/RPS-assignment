@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<head>Rock! Paper! Scissors!</head>
+<body>This is a console game.  Hit F12 or right-click and hit 'inspect', then go to console to play the game!
+
+    <script>
+       function computerPlay() {
+           
+           let computerMoves = ['rock', 'paper', 'scissors'];
+           computerSelection = computerMoves[Math.floor(Math.random() * computerMoves.length)];
+           return computerSelection;
+       } 
+
+       function playerPlay() {
+           
+           while (playerSelection != 'rock' || playerSelection != 'paper' || playerSelection != 'scissors') {
+               playerSelection = window.prompt('Player Score = ' + (playerScore) + '\nComputer Score = ' + (computerScore) + '\nRock, Paper, or Scissors ( 5 Rounds ) ?');
+               playerSelection = playerSelection.toLowerCase();
+               if (playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors') {
+                   return playerSelection;
+               }
+               alert('Only Rock, Paper, or Scissors Allowed');
+           }
+       }
+
+       function playRound(playerSelection, computerSelection) {
+           
+           if (playerSelection === 'rock' && computerSelection === 'paper') {
+               console.log('You lose! Paper beats out Rock');
+               alert('You lose!');
+               return computerScore++
+           } else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+               console.log('You lose! Rock beats out Scissors');
+               alert('You lose!');
+               return computerScore++
+           } else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+               console.log('You lose! Scissors beats out Paper');
+               alert('You lose!');
+               return computerScore++
+           } else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+               console.log('You win! Rock beats out Scissors!');
+               alert('You win!');
+               return playerScore++
+           } else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+               console.log('You win! Scissors beats out Paper!');
+               alert('You win!');
+               return playerScore++
+           } else if (playerSelection === 'paper' && computerSelection === 'rock') {
+               console.log('You win! Paper beats out Rock!');
+               alert('You win!');
+               return playerScore++
+           } else {
+               console.log('it\'s a tie ! Looks like both picked ' + computerSelection + '.');
+               alert('it\'s a tie ! Looks like both of you picked ' + computerSelection + '.');
+           }
+       }
+
+       let playerSelection;
+       let computerSelection;
+       let playerScore;
+       let computerScore;
+
+       function game() {
+
+           playerScore = 0;
+           computerScore = 0;
+           for (let i = 0; i < 5; i++) {
+               computerPlay ();
+               playerPlay ();
+               playRound(playerSelection, computerSelection);
+           }
+           if (playerScore > computerScore) {
+               alert('You win !');
+           } else if (playerScore < computerScore) {
+               alert('You lose !');
+           } else {
+               alert('it\'s a Draw! Try again ?');
+           }
+
+           alert('Type game(); on the console to play again');
+           return ('Type game(); on console to play again');
+       }
+
+       game();
+    </script>
+</body>
